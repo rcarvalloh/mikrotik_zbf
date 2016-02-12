@@ -48,7 +48,7 @@ Inside - Firewall - Accept
 
 Outside - Inside - Deny
 Outside - Outside - Accept
-Outside - Dmz - Accept
+Outside - Dmz - Deny
 Outside - Firewall - Deny
 
 Dmz - Inside - Deny
