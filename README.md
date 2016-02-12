@@ -79,3 +79,6 @@ This is a really restrictive firewall, please study it first before implementing
 The chains follow an specific pattern, don't mess with it, if you want to add a rule for a specific traffic path do so at the specific chain (ie. traffic from inside to outside must be managed in the Inside-to-Outside chain...) Also MAKE SURE, you add the rule before the rule tagged as "DEFAULT-RULE" for that particular chain. 
 
 An easy way to do this is in winbox go to: IP -> FIREWALL - FILTER and filter based on chains (using the button in the top right) then just copy the default rule, modify it to your needs and drag it upwards. If you want to add more rules don't copy the DEFAULT-RULE just the ones preceding it and they'll be automatically on top of it. 
+
+#AUTHOR: ING. RAFAEL CARVALLO
+#VERSION: 1.0
