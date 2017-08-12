@@ -57,17 +57,13 @@ Firewall - Dmz - Deny
 
 Traffic coming from an interface with no security context in either forward, input and output is automatically dropped 
 
-##################
 #  KNOWN ISSUES  #
-##################
 
 Currently, if the router's got a service running that tries to access another service running inside it, the firewall will block the connection (for instance, hotspot trying to do a request to user manager in the same device), this is because the connection won't have any interface associated (it'll appear as coming from an Unknown interface and going to an Unknown interface).
 
 If this is your case disable the rules that block traffic from UNKNOWN interfaces in chains INPUT and OUTPUT and it'll work. 
 
-#############
 #   NOTES   #
-#############
 
 This is a really restrictive firewall, please study it first before implementing, for instance by default traffic from the router to the outside zone (your ISP for example) is dropped, this will cause a problem with your routes if you're using "check-gateway", you need to allow ICMP messages to the gateway being tested in the "Firewall-to-Outside" chain.
 
@@ -75,5 +71,5 @@ The chains follow an specific pattern, don't mess with it, if you want to add a 
 
 An easy way to do this is in winbox go to: IP -> FIREWALL - FILTER and filter based on chains (using the button in the top right corner) then just copy the default rule, modify it to your needs and drag it upwards. If you want to add more rules don't copy the DEFAULT-RULE just the ones preceding it and they'll be automatically on top of it. 
 
-#AUTHOR: ING. RAFAEL CARVALLO
-#VERSION: 2.0
+# AUTHOR: ING. RAFAEL CARVALLO
+# VERSION: 2.0
