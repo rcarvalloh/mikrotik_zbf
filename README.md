@@ -2,11 +2,10 @@
 
 Mikrotik script for zone based firewall implementations 
 
-#########################################################################################################
-#                                          WARNING                                                      #
-#I PROVIDE THIS SCRIPT AS IT IS, WITHOUT ANY KIND OF GUARANTEE THAT IT'll WORK IN YOUR PARTICULAR SETUP #
-#           I AM NOT RESPONSIBLE FOR ANY DOWNTIME YOU MAY INCUR BY USING THIS SCRIPT                    #
-#########################################################################################################
+#                                          WARNING                                                        #
+# I PROVIDE THIS SCRIPT "AS IS", WITHOUT ANY KIND OF GUARANTEE THAT IT'll WORK IN YOUR PARTICULAR SETUP  #
+#           I AM NOT RESPONSIBLE FOR ANY DOWNTIME YOU MAY INCUR BY USING THIS SCRIPT                      #
+
 
 This script is to create a set of custom rules to enable a Mikrotik box firewall to behave as a Zone Based Firewall (read here for more information: http://ciscoskills.net/2011/03/18/understanding-zone-based-firewalls/) 
 
@@ -25,19 +24,15 @@ Inside-to-Outside, Inside-to-Dmz, Inside-to-Firewall, Outside-to-Inside, Outside
 Please read the script's description before running it. 
 The script also installs a function inside the router that you can call via console with the command:
 
-$zbf 
+#  THIS VERSION ONLY WORKS WITH ROS >= 6.36  #
 
-This allows you to either add an interface to a particular security zone, or to remove the interface from any security zone it may be in. 
+The reason being it uses "interface-lists" to classify traffic instead of the old method which used a lot of jumps, this is more cleaner and easier to maintain, in order to add or remove interfaces from a zone all you've got to do is add or remove the interface from the corresponding list (located at interfaces -> interface list from winbox)
 
-To add: $zbf add <zone> <interface>
-Accepted values for <zone> are: 1.- Inside, 2.- Outside, 3.- Dmz, for instance, to add ether3 to dmz write $zbf add 3 ether3
+For the old version check release 1.0
 
-To remove: $zbf remove <interface>
-Do notice that this one doesn't require you to state what zone the interface is in. 
 
-############################################
 #   DEFAULT BEHAVIOR FOR NEW CONNECTIONS   #
-############################################
+
 
 IN ZONE - OUT ZONE - ACTION
 
@@ -78,7 +73,7 @@ This is a really restrictive firewall, please study it first before implementing
 
 The chains follow an specific pattern, don't mess with it, if you want to add a rule for a specific traffic path do so at the specific chain (ie. traffic from inside to outside must be managed in the Inside-to-Outside chain...) Also MAKE SURE, you add the rule before the rule tagged as "DEFAULT-RULE" for that particular chain. 
 
-An easy way to do this is in winbox go to: IP -> FIREWALL - FILTER and filter based on chains (using the button in the top right) then just copy the default rule, modify it to your needs and drag it upwards. If you want to add more rules don't copy the DEFAULT-RULE just the ones preceding it and they'll be automatically on top of it. 
+An easy way to do this is in winbox go to: IP -> FIREWALL - FILTER and filter based on chains (using the button in the top right corner) then just copy the default rule, modify it to your needs and drag it upwards. If you want to add more rules don't copy the DEFAULT-RULE just the ones preceding it and they'll be automatically on top of it. 
 
 #AUTHOR: ING. RAFAEL CARVALLO
-#VERSION: 1.0
+#VERSION: 2.0
